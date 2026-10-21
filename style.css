@@ -1,0 +1,276 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #121212;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  background-color: #1a1a1a;
+  text-align: center;
+  padding: 15px;
+  border-bottom: 2px solid #e50914;
+}
+
+.app-header h1 {
+  font-size: 1.2rem;
+  color: #e50914;
+  letter-spacing: 1px;
+}
+
+.app-header p {
+  font-size: 0.8rem;
+  color: #cccccc;
+}
+
+.app-nav {
+  display: flex;
+  background-color: #222222;
+}
+
+.nav-btn {
+  flex: 1;
+  padding: 12px 5px;
+  background: none;
+  border: none;
+  color: #888888;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+
+.nav-btn.active {
+  color: #ffffff;
+  border-bottom: 3px solid #e50914;
+  background-color: #1a1a1a;
+}
+
+.container {
+  padding: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+h2 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.card-action-box {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #333333;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 8px;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-primary { background-color: #e50914; color: white; }
+.btn-secondary { background-color: #333333; color: white; }
+.btn-danger { background-color: #aa0000; color: white; padding: 5px 10px; font-size: 0.8rem; }
+
+/* ATM-CARD STYLE TICKET */
+#printable-ticket-area {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.ticket-card {
+  width: 85.6mm;
+  height: 53.9mm;
+  background: linear-gradient(135deg, #000000 0%, #1c1c1c 100%);
+  border: 2px solid #e50914;
+  border-radius: 10px;
+  padding: 8px 10px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
+  padding-bottom: 4px;
+}
+
+.biz-title {
+  font-size: 8px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.badge {
+  background-color: #e50914;
+  color: #fff;
+  font-size: 7px;
+  font-weight: bold;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.ticket-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0;
+}
+
+.ticket-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 6px;
+  color: #aaaaaa;
+}
+
+.ticket-id {
+  font-size: 14px;
+  font-weight: bold;
+  color: #e50914;
+  letter-spacing: 0.5px;
+}
+
+.fee {
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.date {
+  font-size: 7px;
+  color: #cccccc;
+}
+
+.ticket-qr-box {
+  background: #ffffff;
+  padding: 3px;
+  border-radius: 4px;
+}
+
+.ticket-footer {
+  border-top: 1px solid #333;
+  padding-top: 3px;
+  font-size: 5.5px;
+  color: #bbbbbb;
+  text-align: center;
+}
+
+/* SCANNER & RESULTS */
+#reader {
+  width: 100%;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.result-card {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.result-card.valid {
+  background-color: #1b381e;
+  border: 2px solid #2e7d32;
+}
+
+.result-card.invalid {
+  background-color: #3b1818;
+  border: 2px solid #d32f2f;
+}
+
+.badge-status {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.valid .badge-status { color: #4caf50; }
+.invalid .badge-status { color: #f44336; }
+
+/* TABLE */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+th { background-color: #222; }
+
+.hidden { display: none !important; }
+
+/* PRINT STYLES */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-ticket-area, #printable-ticket-area * {
+    visibility: visible;
+  }
+  #printable-ticket-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
