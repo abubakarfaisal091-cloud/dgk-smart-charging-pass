@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DGK SMART CHARGING PASS</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#121212">
+  <!-- Free standalone libraries for QR generation and Scanner -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>DGK SMART CHARGING PASS</h1>
+    <p>DGK COMMUNICATION CENTER</p>
+  </header>
+
+  <nav class="app-nav">
+    <button class="nav-btn active" id="tab-gen-btn" onclick="switchTab('gen')">Generate Ticket</button>
+    <button class="nav-btn" id="tab-scan-btn" onclick="switchTab('scan')">Scan & Verify</button>
+    <button class="nav-btn" id="tab-admin-btn" onclick="switchTab('admin')">Admin Panel</button>
+  </nav>
+
+  <main class="container">
+    
+    <!-- GENERATE TICKET TAB -->
+    <section id="tab-gen" class="tab-content active">
+      <h2>Issue New Ticket</h2>
+      <div class="card-action-box">
+        <p>Next Auto Ticket ID: <strong id="next-ticket-id">DGK-001</strong></p>
+        <button class="btn btn-primary" onclick="generateNewTicket()">Generate & Authorize Ticket</button>
+      </div>
+
+      <div id="printable-ticket-area">
+        <div class="ticket-card" id="ticket-card">
+          <div class="ticket-header">
+            <div class="biz-title">DGK COMMUNICATION CENTER</div>
+            <div class="badge">SMART PASS</div>
+          </div>
+          <div class="ticket-body">
+            <div class="ticket-info">
+              <span class="label">PASS ID</span>
+              <div class="ticket-id" id="card-ticket-id">DGK-000</div>
+              <span class="label">FEE</span>
+              <div class="fee">₦100</div>
+              <span class="label">ISSUED ON</span>
+              <div class="date" id="card-date">--/--/----</div>
+            </div>
+            <div class="ticket-qr-box">
+              <div id="qrcode"></div>
+            </div>
+          </div>
+          <div class="ticket-footer">
+            <div class="addr">📍 Kurna Asabe, Tudun Bojuwa, Layin Dan Maradi, Kano State</div>
+            <div class="phones">📞 08167966776 | 08168074955</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-secondary" onclick="printTicket()" id="print-btn" style="display:none;">Print / Save Ticket PDF</button>
+    </section>
+
+    <!-- SCANNER TAB -->
+    <section id="tab-scan" class="tab-content">
+      <h2>Scan Pass QR Code</h2>
+      <div id="reader-wrapper">
+        <div id="reader"></div>
+      </div>
+      
+      <div id="verify-result" class="result-card hidden">
+        <div id="result-status-badge" class="badge-status">VALID</div>
+        <div id="result-details"></div>
+        <button class="btn btn-secondary" onclick="resetScannerUI()">Scan Another Pass</button>
+      </div>
+    </section>
+
+    <!-- ADMIN PANEL TAB -->
+    <section id="tab-admin" class="tab-content">
+      <h2>Admin Dashboard</h2>
+      
+      <div id="admin-login-box" class="card-action-box">
+        <p>Enter Admin PIN to view authorized passes and backups:</p>
+        <input type="password" id="admin-pin-input" placeholder="Default PIN: 1234" class="input-field">
+        <button class="btn btn-primary" onclick="loginAdmin()">Unlock Admin</button>
+      </div>
+
+      <div id="admin-content" class="hidden">
+        <div class="card-action-box">
+          <h3>Change Admin PIN</h3>
+          <input type="password" id="new-pin-input" placeholder="Enter new PIN" class="input-field">
+          <button class="btn btn-secondary" onclick="changePin()">Update PIN</button>
+        </div>
+
+        <div class="card-action-box">
+          <h3>Backup & Restore</h3>
+          <button class="btn btn-primary" onclick="exportData()">Download Backup (JSON)</button>
+          <div style="margin-top: 10px;">
+            <label class="btn btn-secondary">
+              Upload Restore File
+              <input type="file" id="import-file" accept=".json" onchange="importData(event)" style="display:none;">
+            </label>
+          </div>
+        </div>
+
+        <h3>Authorized Tickets (<span id="ticket-count">0</span>)</h3>
+        <div class="table-wrapper">
+          <table id="tickets-table">
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Date Issued</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="tickets-list"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
